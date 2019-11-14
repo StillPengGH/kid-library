@@ -1,0 +1,29 @@
+{
+  "name": "kid-library",
+  "version": "1.0.0",
+  "description": "kid library api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StillPengGH/kid-library.git"
+  },
+  "keywords": [
+    "kid",
+    "library",
+    "api",
+    "node",
+    "koa"
+  ],
+  "author": "StillPeng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StillPengGH/kid-library/issues"
+  },
+  "homepage": "https://github.com/StillPengGH/kid-library#readme",
+  "dependencies": {
+    "koa": "^2.11.0"
+  }
+}
