@@ -1,5 +1,28 @@
-const Koa = require('koa'); // 引入koa框架
+/**
+ * 入口文件app.js
+ */
+// 模块引入
+const Koa = require("koa"); // 引入koa框架
+const bodyParser = require("koa-bodyparser"); // 获取post请求data参数
+const static = require("koa-static"); // 处理静态文件
+const path = require("path"); //node内置
 
-let app = new Koa(); 
+// 自定义中间件,捕获全局异常
+const { catchException } = require("./middlewares/exception");
 
-app.listen(3000); // 监听3000端口
+// 自定义初始化类
+const { InitManager } = require("./core/init");
+
+// 通过Koa创建应用程序对象app
+let app = new Koa();
+
+// app对象上use中间件
+app.use(catchException);
+app.use(bodyParser);
+app.use(static(path.join(__dirname + "/static")));
+
+// 进行初始化操作
+InitManager.initCore(app);
+
+// 设置监听端口3000
+app.listen(3000);
