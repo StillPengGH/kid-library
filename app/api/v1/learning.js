@@ -12,7 +12,7 @@ let router = new Router({
 });
 
 /**
- * 一、获取最新一期期刊
+ * 一、获取最新一期学习期刊
  * router.get里可以使用多个中间件，new Authorize(2).middleware就是自定义的一个中间件
  * 作用有两个：
  *  |--1.设置接口的权限级别值，即Authorize(2)里的2，用来和用户级别值做对比

@@ -1,44 +1,45 @@
+const jwt = require('jsonwebtoken');
 /**
  * 通用方法1：查找成员,basevalidator中使用
  * 参数：
  *  |--instance：实例
  *  |--specifiedType：规定的类型
  *  |--filter：过滤器
- */
-const findMembers = function(instance, { prefix, specifiedType, filter }) {
+ */const findMembers = function (instance, {
+  prefix,
+  specifiedType,
+  filter
+}) {
   // 递归函数
   function _find(instance) {
-    // 如果instance不是一个对象(每个对象都有__proto__属性)
-    if (instance.__proto__ == null) {
-      return [];
-    }
+    //基线条件（跳出递归）
+    if (instance.__proto__ === null)
+      return []
 
-    // 获取对象的所有key值，通过Reflect.ownKeys(obj)方法，返回一个数组
-    let keys = keys.filter(name => {
+    let names = Reflect.ownKeys(instance)
+    names = names.filter((name) => {
       // 过滤掉不满足条件的属性或方法名
-      return _shouldKeep(name);
-    });
+      return _shouldKeep(name)
+    })
+
+    return [...names, ..._find(instance.__proto__)]
   }
 
   function _shouldKeep(value) {
     if (filter) {
       if (filter(value)) {
-        return true;
+        return true
       }
     }
-    if (prefix) {
-      if (value.startsWith(prefix)) {
-        return true;
-      }
-    }
-    if (specifiedType) {
-      if (instance[value] instanceof specifiedType) {
-        return true;
-      }
-    }
+    if (prefix)
+      if (value.startsWith(prefix))
+        return true
+    if (specifiedType)
+      if (instance[value] instanceof specifiedType)
+        return true
   }
-  return _find(instance);
-};
+  return _find(instance)
+}
 
 /**
  * 通用方法2：使用jwt第三方工具，生成token令牌

@@ -27,7 +27,7 @@ class InitManager {
 
   // 把config配置文件中配置对象，存储在global的config属性上，方便使用
   static loadConfig() {
-    configPath = process.cwd() + "/config/pro-config.js";
+    let configPath = process.cwd() + "/config/pro-config.js";
     const proConfig = require(configPath);
     global.config = proConfig;
   }

@@ -17,12 +17,12 @@ let commonFields = {
   title: Sequelize.STRING, //标题
   content: Sequelize.STRING, //内容
   image: Sequelize.STRING, //图片
-  pubdate: Sequelize.DATEONLY, //创作时间
+  pubdate: Sequelize.STRING, //创作时间
   like_nums: {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
-  type: Sequelize.TINYINT,
+  type: Sequelize.INTEGER,
   url: Sequelize.STRING
 };
 

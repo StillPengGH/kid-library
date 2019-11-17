@@ -18,7 +18,7 @@ class Authorize {
   // 获取权限控制中间件，当前用户权限级别大于api接口设置的level，执行next(),小于的话直接抛出异常，告知权限不够。
   // get middleware()：通过类的属性方式设置的方法，外部获取 new Authorize().middleware即可
   get middleware() {
-    return (ctx, next) => {
+    return async (ctx, next) => {
       // basicAuth(request)返回的是Credentials(证书)类型的对象，有两个属性：
       // name:传过来的token
       // pass:为空
@@ -39,6 +39,9 @@ class Authorize {
         // 如果令牌过期，抛出异常
         if (error.name == "TokenExpiredError") {
           throw new global.errs.Forbbiden("令牌已经过期");
+        }
+        if (error.name == "JsonWebTokenError") {
+          throw new global.errs.Forbbiden("无效的令牌");
         }
       }
 

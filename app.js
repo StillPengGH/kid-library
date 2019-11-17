@@ -1,6 +1,10 @@
 /**
  * 入口文件app.js
  */
+
+// 引入模块别名第三方工具
+require('module-alias/register');
+
 // 模块引入
 const Koa = require("koa"); // 引入koa框架
 const bodyParser = require("koa-bodyparser"); // 获取post请求data参数
@@ -18,7 +22,7 @@ let app = new Koa();
 
 // app对象上use中间件
 app.use(catchException);
-app.use(bodyParser);
+app.use(bodyParser());
 app.use(static(path.join(__dirname + "/static")));
 
 // 进行初始化操作

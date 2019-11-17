@@ -1,6 +1,6 @@
 const { BaseValidator, Rule } = require("../../core/base-validator");
 const { UserModel } = require("../models/user-model");
-const { LoginType, Library } = require("../lib/enum");
+const { LoginType, LibraryType } = require("../common/enum");
 
 /**
  * 用户注册验证器

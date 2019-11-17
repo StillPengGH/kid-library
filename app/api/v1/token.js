@@ -3,11 +3,11 @@ const {
   LoginInfoValidator,
   NotEmptyValidator
 } = require("../../validators/validator");
-const { LoginType } = require("../../lib/enum");
+const { LoginType } = require("../../common/enum");
 const { UserModel } = require("../../models/user-model");
 const { generateToken } = require("../../../core/util");
 const { Authorize } = require("../../../middlewares/authorize");
-const { WXManager } = require("../../services/wx");
+const { WXManager } = require("../../services/wx-service");
 let router = new Router({
   prefix: "/v1/token"
 });
