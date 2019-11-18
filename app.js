@@ -29,4 +29,4 @@ app.use(static(path.join(__dirname + "/static")));
 InitManager.initCore(app);
 
 // 设置监听端口3000
-app.listen(3000);
+app.listen(80);
